@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Polo - Menú Digital</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fire: { 500: '#F95738', 600: '#EE4266' },
+                        amberGold: { 400: '#F4D35E', 500: '#EE964B', 600: '#D97706' },
+                        rustic: { 900: '#0E0B0A', 800: '#181210', 700: '#261C18', 600: '#3D2D27' }
+                    },
+                    fontFamily: {
+                        brand: ['"Cinzel Decorative"', 'serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Instancia de tu CSS personalizado -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="h-screen w-screen flex flex-col justify-between p-3 md:p-5 select-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rustic-800 via-rustic-900 to-black">
+
+    <!-- HEADER -->
+    <header class="flex justify-between items-center bg-rustic-800/90 rounded-2xl px-5 py-3 rustic-border shadow-2xl relative z-10 mb-3">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amberGold-400 via-amberGold-500 to-fire-500 flex items-center justify-center text-rustic-900 shadow-lg shadow-amberGold-500/20">
+                <i class="fa-solid fa-fire-burner text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="font-brand text-2xl md:text-3xl font-bold tracking-widest gold-gradient-text uppercase">Casa Polo</h1>
+                <p class="text-xs text-amberGold-400/80 font-serif italic tracking-wider">Barbacoa Tradicional • Dr. Martínez del Río 48</p>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center space-x-3 bg-rustic-700/60 px-5 py-2 rounded-full border border-amberGold-500/20">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="text-xs font-semibold uppercase tracking-widest text-gray-200">Servicio: Sábado, Domingo y Días Festivos</span>
+        </div>
+
+        <div class="text-right flex items-center space-x-4">
+            <div>
+                <div id="live-clock" class="font-mono text-2xl md:text-3xl font-bold tracking-wider text-white">00:00:00</div>
+                <div id="live-date" class="text-xs text-amberGold-400 font-medium uppercase tracking-wide">Cargando...</div>
+            </div>
+            <button id="fullscreen-btn" title="Pantalla Completa" class="opacity-40 hover:opacity-100 text-gray-300 p-2 rounded-lg hover:bg-rustic-700 transition">
+                <i class="fa-solid fa-expand text-base"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO CAROUSEL -->
+    <section class="relative h-44 md:h-52 rounded-2xl overflow-hidden mb-3 rustic-border shadow-2xl">
+        <div id="carousel-container" class="relative h-full w-full">
+            
+            <!-- SLIDE 1: Tacos Dorados -->
+            <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out flex items-center">
+                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1200&q=80" alt="Tacos Dorados" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-rustic-900 via-rustic-900/80 to-transparent"></div>
+                <div class="relative z-10 px-8 max-w-2xl">
+                    <span class="px-3 py-1 bg-fire-500 text-white font-bold text-xs rounded-full uppercase tracking-wider pulse-badge inline-block mb-2">
+                        ⭐ Especialidad de la Casa
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-1">Orden de Tacos Dorados</h2>
+                    <p class="text-xs md:text-sm text-gray-300 mb-2 line-clamp-2">Preparados con aguacate, jitomate, lechuga fresca, crema y queso rallado.</p>
+                    <div class="text-2xl font-black text-amberGold-400 font-serif">$130</div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Barbacoa -->
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" alt="Barbacoa Tradicional" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-rustic-900 via-rustic-900/80 to-transparent"></div>
+                <div class="relative z-10 px-8 max-w-2xl">
+                    <span class="px-3 py-1 bg-amberGold-500 text-rustic-900 font-bold text-xs rounded-full uppercase tracking-wider pulse-badge inline-block mb-2">
+                        🔥 Barbacoa por Kilo
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-1">Pierna, Espaldilla, Costilla y más</h2>
+                    <p class="text-xs md:text-sm text-gray-300 mb-2 line-clamp-2">Barbacoa o Panza tradicional preparada al estilo artesanal.</p>
+                    <div class="text-2xl font-black text-amberGold-400 font-serif">$800 <span class="text-xs text-gray-300 font-sans font-normal">/ Kilo</span></div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Consomé con Pata -->
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex items-center">
+                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1200&q=80" alt="Consomé" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-rustic-900 via-rustic-900/80 to-transparent"></div>
+                <div class="relative z-10 px-8 max-w-2xl">
+                    <span class="px-3 py-1 bg-emerald-600 text-white font-bold text-xs rounded-full uppercase tracking-wider pulse-badge inline-block mb-2">
+                        🍲 Tradicional & Calientito
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-1">Consomé Especial con Pata</h2>
+                    <p class="text-xs md:text-sm text-gray-300 mb-2 line-clamp-2">Sabor auténtico de horno de hoyo para acompañar tus tacos.</p>
+                    <div class="text-2xl font-black text-amberGold-400 font-serif">$75</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-3 right-6 z-20 flex space-x-2" id="carousel-dots">
+            <span class="w-6 h-2 rounded-full bg-amberGold-400 transition-all"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-600 transition-all"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-600 transition-all"></span>
+        </div>
+    </section>
+
+    <!-- GRID PRINCIPAL DEL MENÚ (4 COLUMNAS) -->
+    <main class="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4 overflow-hidden pb-1">
+        
+        <!-- COLUMNA 1: BARBACOA Y CABEZA -->
+        <div class="flex flex-col space-y-2">
+            <div class="flex items-center space-x-2 pb-1.5 border-b border-amberGold-500/30">
+                <i class="fa-solid fa-drumstick-bite text-amberGold-400 text-base"></i>
+                <h2 class="font-serif text-sm font-bold uppercase tracking-wider text-amberGold-400">Barbacoa & Kilos</h2>
+            </div>
+            
+            <div class="space-y-2 overflow-y-auto no-scrollbar">
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Barbacoa por Kilo</h3>
+                        <p class="text-[11px] text-gray-400">Pierna, Espaldilla, Costilla y más…</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$800</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Panza por Kilo</h3>
+                        <p class="text-[11px] text-gray-400">Sazonada a la penca tradicional.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$800</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Cabeza Completa</h3>
+                        <p class="text-[11px] text-amberGold-400/80 italic">Pregunta la disponibilidad</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$230</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Consomé Chico / Grande</h3>
+                        <p class="text-[11px] text-gray-400">Tazón reconfortante de la casa.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-serif font-extrabold text-base text-amberGold-400 block">$40 / $50</span>
+                    </div>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Consomé con Pata</h3>
+                        <p class="text-[11px] text-gray-400">Sabor rico y concentrado.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$75</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 2: TACOS Y ANTOJITOS -->
+        <div class="flex flex-col space-y-2">
+            <div class="flex items-center space-x-2 pb-1.5 border-b border-amberGold-500/30">
+                <i class="fa-solid fa-utensils text-amberGold-400 text-base"></i>
+                <h2 class="font-serif text-sm font-bold uppercase tracking-wider text-amberGold-400">Antojitos & Tacos</h2>
+            </div>
+            
+            <div class="space-y-2 overflow-y-auto no-scrollbar">
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start border-amberGold-500/40">
+                    <div>
+                        <div class="flex items-center space-x-1">
+                            <h3 class="font-bold text-white text-sm">Tacos Dorados (Orden)</h3>
+                            <span class="px-1.5 py-0.5 bg-fire-500/20 text-fire-500 text-[9px] font-bold rounded">Especial</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400">Aguacate, jitomate, lechuga, crema y queso.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$130</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Taco de Barbacoa</h3>
+                        <p class="text-[11px] text-gray-400">Pierna, Espaldilla, Costilla y más…</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$40</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Taco de Panza</h3>
+                        <p class="text-[11px] text-gray-400">Servido en tortilla caliente.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$40</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Quesadillas (C/U)</h3>
+                        <p class="text-[11px] text-gray-400">Sesos, Queso o Papa.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$30</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 3: GUARNICIONES -->
+        <div class="flex flex-col space-y-2">
+            <div class="flex items-center space-x-2 pb-1.5 border-b border-amberGold-500/30">
+                <i class="fa-solid fa-seedling text-amberGold-400 text-base"></i>
+                <h2 class="font-serif text-sm font-bold uppercase tracking-wider text-amberGold-400">Guarniciones</h2>
+            </div>
+            
+            <div class="space-y-2 overflow-y-auto no-scrollbar">
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Orden de Nopales</h3>
+                        <p class="text-[11px] text-gray-400">Incluye aguacate y queso.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$130</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Media Orden de Nopales</h3>
+                        <p class="text-[11px] text-gray-400">Ideal para compartir.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$75</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Cuarto de Orden de Nopales</h3>
+                        <p class="text-[11px] text-gray-400">Porción individual.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$45</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Orden de Chicharrón</h3>
+                        <p class="text-[11px] text-gray-400">Crujiente de la casa.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$40</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Orden de Aguacate o Queso</h3>
+                        <p class="text-[11px] text-gray-400">El complemento perfecto.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$25</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA 4: BEBIDAS Y POSTRES -->
+        <div class="flex flex-col space-y-2">
+            <div class="flex items-center space-x-2 pb-1.5 border-b border-amberGold-500/30">
+                <i class="fa-solid fa-wine-glass text-amberGold-400 text-base"></i>
+                <h2 class="font-serif text-sm font-bold uppercase tracking-wider text-amberGold-400">Bebidas & Postres</h2>
+            </div>
+            
+            <div class="space-y-2 overflow-y-auto no-scrollbar">
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Cervezas / Preparadas</h3>
+                        <p class="text-[11px] text-gray-400">Corona, Negra Modelo, Victoria / Mich.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-base text-amberGold-400 ml-2">$50 / $65</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Refrescos / Jugo de Naranja</h3>
+                        <p class="text-[11px] text-gray-400">Coca-Cola, Mundet, Sidral, Boing.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-base text-amberGold-400 ml-2">$40 / $50</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Aguas Frescas (Jamaica/Horchata)</h3>
+                        <p class="text-[11px] text-gray-400">Agua embotellada ($30) / Min. Prep ($45)</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-base text-amberGold-400 ml-2">$40</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Flan Napolitano</h3>
+                        <p class="text-[11px] text-gray-400">Casero con receta tradicional.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$35</span>
+                </div>
+
+                <div class="menu-card rounded-xl p-3 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Duraznos en Almíbar</h3>
+                        <p class="text-[11px] text-gray-400">Acompañados con crema.</p>
+                    </div>
+                    <span class="font-serif font-extrabold text-lg text-amberGold-400 ml-2">$35</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER INFO -->
+    <footer class="mt-1 flex justify-between items-center text-xs text-gray-400 bg-rustic-800/80 px-5 py-2 rounded-xl rustic-border">
+        <div class="flex items-center space-x-4">
+            <span class="text-amberGold-400 font-semibold"><i class="fa-solid fa-location-dot text-fire-500 mr-1.5"></i> Dr. Martínez del Río 48, Col. Doctores, Cuauhtémoc, CDMX</span>
+        </div>
+        <div class="text-gray-300 font-semibold">
+            <span><i class="fa-solid fa-phone text-amberGold-400 mr-1"></i> Pedidos Especiales: 55 5761 1685 | 713 135 2440</span>
+        </div>
+    </footer>
+
+    <!-- Instancia de tu JS personalizado -->
+    <script src="js/main.js"></script>
+</body>
+</html>
