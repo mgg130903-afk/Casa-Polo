@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
 
-    // --- AUTOMATED CAROUSEL SLIDER ---
+    // --- AUTOMATED CAROUSEL SLIDER (3 IMÁGENES DÍA DE MUERTOS) ---
     const slides = document.querySelectorAll('.carousel-slide');
     const dotsContainer = document.getElementById('carousel-dots');
     let currentSlide = 0;
-    const SLIDE_INTERVAL = 6000;
+    const SLIDE_INTERVAL = 6000; // Cambia cada 6 segundos
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dots = dotsContainer.children;
             Array.from(dots).forEach((dot, i) => {
                 if (i === index) {
-                    dot.className = "w-6 h-2.5 rounded-full bg-amberGold-400 transition-all duration-300";
+                    dot.className = "w-7 h-2.5 rounded-full bg-amberGold-400 transition-all duration-300";
                 } else {
                     dot.className = "w-2.5 h-2.5 rounded-full bg-gray-600 transition-all duration-300";
                 }
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             if (document.exitFullscreen) {
-                document.exitFullscreen();
+                document.exitFriendlyElement ? document.exitFriendlyElement() : document.exitFullscreen();
             }
         }
     }
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Double Click anywhere on screen to toggle Fullscreen
+    // Doble clic para pantalla completa en la TV
     let clickCount = 0;
     document.body.addEventListener('click', () => {
         clickCount++;
